@@ -1,5 +1,9 @@
 import { Solution } from "../models/solution.js";
 
+function solve(question) {
+  return typeof question == 'string'? romanConverter(question): decimalConverter(question);
+}
+
 function romanConverter(roman) {
   const romanMap = {
     I: 1, V: 5, X: 10,
@@ -49,7 +53,7 @@ function decimalConverter(decimal) {
 }
   
 async function convert(question) {
-  const answer = typeof question == 'string'? romanConverter(question): decimalConverter(question);
+  const answer = solve(question);
   const solution = new Solution({question: question, answer})
   await solution.save();
   return solution;
@@ -64,7 +68,7 @@ async function getSolutionById(id) {
 }
 
 async function updateSolution(id, question) {
-  const answer = typeof question == 'string'? romanConverter(question): 'from decimal to roman is not implemented yet';
+  const answer = solve(question);
   const solution = Solution.findByIdAndUpdate(id, {question, answer});
   return solution;
 }

@@ -1,7 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const { convertRomanHandler } = require('../controllers/convertController');
+import express from 'express';
+import { convertRomanHandler } from '../controllers/convertController.js';
 
-router.post('/', convertRomanHandler);
+const convertRouter = express.Router();
 
-module.exports = router;
+convertRouter.post('/', convertRomanHandler);
+
+export default convertRouter;

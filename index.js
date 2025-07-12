@@ -1,13 +1,14 @@
-const express = require('express');
+import express from 'express';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import convertRouter from './routes/convert.js';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const app = express();
-const path = require('path');
 const port = 3000;
-
-const convertRouter = require('./routes/convert');
-
-
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(join(__dirname, 'public')));
 
 app.use('/convert', convertRouter);
 

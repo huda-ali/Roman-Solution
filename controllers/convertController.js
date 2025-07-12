@@ -1,4 +1,4 @@
-const { romanConverter } = require('../services/romanConverter');
+import { romanConverter } from '../services/romanConverter.js';
 
 function convertRomanHandler(req, res) {
   const roman = req.body.roman;
@@ -8,4 +8,4 @@ function convertRomanHandler(req, res) {
   res.json({ result });
 }
 
-module.exports = { convertRomanHandler };
+export { convertRomanHandler }

@@ -1,7 +1,7 @@
 function romanValidator(req, res, next) {
-  const roman = req.body.roman;
-  if (!roman || roman.match(/[^IVXLCDM]/g) !== null){
-    return res.status(400).json({ error: 'roman input not valid' });
+  const question = req.body.question;
+  if (!question || (isNaN(parseInt(question)) && question.match(/[^IVXLCDM]/g) !== null)){
+    return res.status(400).json({ error: 'question input not valid' });
   }
   next();
 }

@@ -1,3 +1,5 @@
+import { Solution } from "../models/solution.js";
+
 function romanConverter(roman) {
   const romanMap = {
     I: 1, V: 5, X: 10,
@@ -20,5 +22,30 @@ function romanConverter(roman) {
   return total;
 }
   
-export { romanConverter };
+async function convert(question) {
+  const answer = typeof question == 'string'? romanConverter(question): 'from decimal to roman is not implemented yet';
+  const solution = new Solution({question: question, answer})
+  await solution.save();
+  return solution;
+}
+
+async function getAllSolutions() {
+  return await Solution.find({});
+}
+
+async function getSolutionById(id) {
+  return await Solution.findById(id);
+}
+
+async function updateSolution(id, question) {
+  const answer = typeof question == 'string'? romanConverter(question): 'from decimal to roman is not implemented yet';
+  const solution = Solution.findByIdAndUpdate(id, {question, answer});
+  return solution;
+}
+
+async function deleteSolution(id) {
+  return Solution.findByIdAndDelete(id);
+}
+
+export { convert, getAllSolutions, getSolutionById, updateSolution, deleteSolution };
   

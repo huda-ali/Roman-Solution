@@ -1,5 +1,5 @@
 import express from 'express';
-import { convertRomanHandler } from '../controllers/convertController.js';
+import { convertRomanHandler } from '../controllers/convert.controller.js';
 import { romanValidator } from '../middleware/romanValidator.middleware.js';
 
 const convertRouter = express.Router();
